@@ -1,6 +1,12 @@
 import  { useState } from 'react';
 import './App.css'
 import Navber from './Components/Navber';
+import wellcome  from './assets/visited Our Quiz app.jpg'
+
+
+import { useWindowSize } from "@uidotdev/usehooks";
+import Confetti from 'react-confetti'
+
 const quizData = [
   {
     question: 'What is the capital of France?',
@@ -56,7 +62,7 @@ function App() {
   };
 
 
-
+  const { width, height } = useWindowSize()
   return (
     <>
     <Navber></Navber>
@@ -64,8 +70,13 @@ function App() {
       <h1 className='text-4xl font-extrabold p-6'>Simple Quiz</h1>
       {showScore ? (
         <div id="result">
-          <p>You scored {score} out of {quizData.length}!</p>
-          <button onClick={resetQuiz}>Restart Quiz</button>
+          <p className=' text-3xl py-1'>You scored {score} out of {quizData.length}!</p>
+          <button className='btn w-1/2 bg-yellow-300 text-red-500' onClick={resetQuiz}>Restart Quiz</button>
+          <img className=' mx-auto mt-2' src={wellcome} alt="" />
+          <Confetti
+      width={width}
+      height={height}
+    />
         </div>
       ) : (
         <>
